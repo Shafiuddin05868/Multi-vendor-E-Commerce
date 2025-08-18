@@ -6,6 +6,7 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
+  //protected routes
   layout("routes/ProtectRoute.tsx", [index("routes/home.tsx")]),
 
   //public routes
