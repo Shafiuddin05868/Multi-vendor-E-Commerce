@@ -4,7 +4,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { Button } from "~/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Separator } from "~/components/ui/separator";
@@ -26,10 +26,13 @@ const AdminLogin = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader >
-          {/* <CardTitle className="text-center text-2xl font-bold">
-            Login to Your Account
-          </CardTitle> */}
-          <img className="mx-auto" style={{height: "200px"}} src="/images/logo.png" alt="VendorVerse logo" />
+          <img className="mx-auto" style={{height: "100px"}} src="/images/logo.png" alt="VendorVerse logo" />
+          <CardTitle className="text-center text-2xl font-bold">
+            VendorVerse
+          </CardTitle>
+          <CardDescription className="text-center">
+            Your MarketPlace, Endless Choises
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
