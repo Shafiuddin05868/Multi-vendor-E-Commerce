@@ -9,6 +9,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { Mail, Lock, User } from "lucide-react";
 import { Link } from "react-router";
+import { Checkbox } from "~/components/ui/checkbox";
 
 export default function RegisterPage() {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -78,6 +79,13 @@ export default function RegisterPage() {
                   className="border-none focus-visible:ring-0"
                 />
               </div>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <Checkbox id="terms" />
+              <Label htmlFor="terms" className="text-sm">
+                I agree to the terms and conditions
+              </Label>
             </div>
 
             <Button type="submit" className="w-full mt-4">
