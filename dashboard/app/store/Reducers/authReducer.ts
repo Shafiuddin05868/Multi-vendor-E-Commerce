@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+ 
 export const authReducer = createSlice({
   name: "auth",
   initialState: {
@@ -9,7 +9,7 @@ export const authReducer = createSlice({
     userInfo: "",
   },
   reducers: {},
-//   extraReducers: {},
+  extraReducers: ()=>{},
 });
 
 export default authReducer.reducer;
