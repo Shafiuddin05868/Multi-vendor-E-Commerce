@@ -31,6 +31,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <title>VendorVerse</title>
       </head>
       <body>
         {children}
@@ -41,8 +42,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+import store from "./store";
+import { Provider } from "react-redux";
 export default function App() {
-  return <Outlet />;
+  return (
+    <Provider store={store}>
+      <Outlet />
+    </Provider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
