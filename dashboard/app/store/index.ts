@@ -11,4 +11,7 @@ const store = configureStore({
     // devTools: process.env.VITE_NODE_ENV !== 'production'
 })
 
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
 export default store;
