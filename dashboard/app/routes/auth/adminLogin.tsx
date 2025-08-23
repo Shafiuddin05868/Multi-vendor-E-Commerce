@@ -1,25 +1,27 @@
-import { Chrome, Facebook, Lock, Mail } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 import React, { useState } from "react";
-import { FaFacebook } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { Separator } from "~/components/ui/separator";
+import { adminLogin } from "~/store/Reducers/authReducer";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "~/store";
 
 const AdminLogin = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [form, setForm] = useState({ email: "", password: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  }; 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    dispatch(adminLogin(form))
     // handle registration logic here
-    console.log(form);
+    // console.log(form);
   };
 
   return (
