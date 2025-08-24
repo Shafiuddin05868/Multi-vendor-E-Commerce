@@ -1,19 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import api from "~/api/api";
+import fetcher from "~/api/fetcher";
 
 export const adminLogin = createAsyncThunk('auth/admin_login',
   async (credentials: {email: string, password: string})=>{
-    console.log("credentials: ", credentials)
     try {
-      const {data} = await api.post('/admin-login', credentials)
-      console.log("data: ", data)
+      const {data} = await fetcher.post('/admin-login', credentials)
     } catch (err) {
       
     }
   }
 )
  
-export const authReducer = createSlice({
+export const authSlice = createSlice({
   name: "auth",
   initialState: {
     successMessage: "",
@@ -25,4 +23,4 @@ export const authReducer = createSlice({
   extraReducers: ()=>{},
 });
 
-export default authReducer.reducer;
+export default authSlice.reducer;

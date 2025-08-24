@@ -5,7 +5,7 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { adminLogin } from "~/store/Reducers/authReducer";
+import { adminLogin } from "~/store/Reducers/authSlice";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "~/store";
 

@@ -1,6 +1,6 @@
 import { apiUrl } from "~/utils/constant";
 
-const api = {
+const fetcher = {
   get: async (endpoint: string) => {
     const res = await fetch(`${apiUrl}${endpoint}`);
     if (!res.ok) throw new Error(`GET ${endpoint} failed`);
@@ -48,4 +48,4 @@ const api = {
   // Add other methods like PUT, DELETE as needed
 };
 
-export default api;
+export default fetcher;
