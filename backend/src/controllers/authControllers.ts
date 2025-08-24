@@ -14,7 +14,6 @@ class authControllers {
       message: "Admin login",
       data: adminData,
     })
-    console.log(adminData)
   };
 }
 
