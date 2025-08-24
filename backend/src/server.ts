@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import authRouter from "./routes/authRoutes";
 import dbConnect from "./utiles/db";
 const app = express();
 dotenv.config();
+app.use(cors());
 app.use(express.json());
+
 
 app.use("/api", authRouter);
 
