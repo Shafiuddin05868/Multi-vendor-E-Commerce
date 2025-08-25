@@ -4,7 +4,7 @@ import fetcher from "~/api/fetcher";
 export const adminLogin = createAsyncThunk('auth/admin_login',
   async (credentials: {email: string, password: string})=>{
     try {
-      const {data} = await fetcher.post('/admin-login', credentials)
+      const {data} = await fetcher.post('/auth/admin-login', credentials)
     } catch (err) {
       
     }
