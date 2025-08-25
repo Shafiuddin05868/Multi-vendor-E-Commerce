@@ -5,6 +5,6 @@ const authRouter = Router();
 
 
 //admin login
-authRouter.post("/admin-login", authControllers.admin_login)
+authRouter.post("/auth/admin-login", authControllers.admin_login)
 
 export default authRouter;
