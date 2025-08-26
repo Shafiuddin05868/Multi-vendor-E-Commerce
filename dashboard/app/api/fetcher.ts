@@ -7,11 +7,12 @@ const fetcher = {
     return res.json();
   },
 
-  post: async (endpoint: string, data: any) => {
+  post: async (endpoint: string, data: any, options?: RequestInit) => {
     const res = await fetch(`${apiUrl}${endpoint}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
+      ...options,
     });
     if (!res.ok) throw new Error(`POST ${endpoint} failed`);
     return res.json();
