@@ -6,13 +6,17 @@ import dbConnect from "./utiles/db";
 const app = express();
 dotenv.config();
 
-app.use(express.json());
+// CORS configuration - must be before other middleware
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN, // your frontend URL
+    origin: true, // Allow all origins for debugging - change back to specific origin in production
     credentials: true,
+    // methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    // allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.use(express.json());
 
 app.use("/api", authRouter);
 
