@@ -22,7 +22,7 @@ class authControllers {
             }),
             {
               expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30), //30d
-              httpOnly: process.env.NODE_ENV === "production",
+              httpOnly: true,
               secure: process.env.NODE_ENV === "production",
             }
           );
