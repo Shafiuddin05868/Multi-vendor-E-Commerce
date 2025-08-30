@@ -1,5 +1,6 @@
 import { Lock, Mail } from "lucide-react";
-import React, { useState } from "react";
+import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { Button } from "~/components/ui/button";
 import {
@@ -11,14 +12,14 @@ import {
 } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
-import { adminLogin } from "~/store/Reducers/authSlice";
+import { adminLogin, clearMessage } from "~/store/Reducers/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "~/store";
 import { LoadingText } from "~/components/loaders/GlobalLodaders";
 
 const AdminLogin = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { loader } = useSelector((state: RootState) => state.auth);
+  const { loading, errorMessage } = useSelector((state: RootState) => state.auth);
   const [form, setForm] = useState({ email: "", password: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +32,12 @@ const AdminLogin = () => {
     // handle registration logic here
     // console.log(form);
   };
+  useEffect(()=>{
+  if (errorMessage) {
+    toast.error(errorMessage);
+    dispatch(clearMessage())
+  }
+  },[errorMessage])
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
@@ -83,8 +90,8 @@ const AdminLogin = () => {
               </div>
             </div>
 
-            <Button aria-disabled={loader} type="submit" className="w-full mt-4">
-              {loader ? <LoadingText /> : "Login"}
+            <Button aria-disabled={loading} type="submit" className="w-full mt-4">
+              {loading ? <LoadingText /> : "Login"}
             </Button>
           </form>
         </CardContent>
