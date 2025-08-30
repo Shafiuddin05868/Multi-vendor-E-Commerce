@@ -7,6 +7,8 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -48,6 +50,7 @@ export default function App() {
     <Provider store={store}>
       <Meta />
       <Outlet />
+      <ToastContainer />
     </Provider>
   );
 }
