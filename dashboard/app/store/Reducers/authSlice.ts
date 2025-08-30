@@ -21,20 +21,26 @@ export const authSlice = createSlice({
   initialState: {
     successMessage: "",
     errorMessage: "",
-    loader: false,
+    loading: false,
     userInfo: "",
   },
-  reducers: {},
+  reducers: {
+    clearMessage : (state)=>{
+      state.errorMessage = ""
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(adminLogin.pending, (state, { payload }) => {
-        state.loader = true;
+        state.loading = true;
       })
       .addCase(adminLogin.rejected, (state, { payload }) => {
-        state.loader = false;
+        state.loading = false;
         state.errorMessage = payload as string;
       });
   },
 });
+
+export const {clearMessage} = authSlice.actions;
 
 export default authSlice.reducer;
