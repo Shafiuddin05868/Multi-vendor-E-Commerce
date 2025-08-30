@@ -27,6 +27,7 @@ export const authSlice = createSlice({
   reducers: {
     clearMessage : (state)=>{
       state.errorMessage = ""
+      state.successMessage = ""
     }
   },
   extraReducers: (builder) => {
@@ -37,7 +38,11 @@ export const authSlice = createSlice({
       .addCase(adminLogin.rejected, (state, { payload }) => {
         state.loading = false;
         state.errorMessage = payload as string;
-      });
+      }).addCase(adminLogin.fulfilled, (state, {payload})=>{
+        state.loading = false;
+        state.successMessage = payload?.message || "Login Successful";
+        state.userInfo = payload;
+      })
   },
 });
 
