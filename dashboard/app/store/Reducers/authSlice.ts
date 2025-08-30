@@ -20,7 +20,11 @@ export const authSlice = createSlice({
     userInfo: "",
   },
   reducers: {},
-  extraReducers: ()=>{},
+  extraReducers: (builder)=>{
+    builder.addCase(adminLogin.pending, (state, {payload})=>{
+      state.loader = true;
+    })
+  },
 });
 
 export default authSlice.reducer;
