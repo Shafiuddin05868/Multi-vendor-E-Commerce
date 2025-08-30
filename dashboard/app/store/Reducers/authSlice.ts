@@ -1,16 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import fetcher from "~/api/fetcher";
+import api from "~/api/fetcher";
 
-export const adminLogin = createAsyncThunk('auth/admin_login',
-  async (credentials: {email: string, password: string})=>{
+export const adminLogin = createAsyncThunk(
+  "auth/admin_login",
+  async (
+    credentials: { email: string; password: string },
+    { fulfillWithValue, rejectWithValue }
+  ) => {
     try {
-      const {data} = await fetcher.post('/auth/admin-login', credentials, {credentials: 'include'})
-    } catch (err) {
-      
+      const { data } = await api.post("/auth/admin-login", credentials);
+      return fulfillWithValue(data);
+    } catch (err: any) {
+      return rejectWithValue(err?.response?.data?.message || 'Login failed');
     }
   }
-)
- 
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -20,10 +25,15 @@ export const authSlice = createSlice({
     userInfo: "",
   },
   reducers: {},
-  extraReducers: (builder)=>{
-    builder.addCase(adminLogin.pending, (state, {payload})=>{
-      state.loader = true;
-    })
+  extraReducers: (builder) => {
+    builder
+      .addCase(adminLogin.pending, (state, { payload }) => {
+        state.loader = true;
+      })
+      .addCase(adminLogin.rejected, (state, { payload }) => {
+        state.loader = false;
+        state.errorMessage = payload as string;
+      });
   },
 });
 
