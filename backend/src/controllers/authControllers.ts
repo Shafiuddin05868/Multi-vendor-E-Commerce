@@ -37,7 +37,7 @@ class authControllers {
         responseReturn(res, 404, { message: "Admin not found" });
       }
     } catch (err) {
-      responseReturn(res, 500, { error: (err as Error).message });
+      responseReturn(res, 500, { message: (err as Error).message });
     }
   };
 }
