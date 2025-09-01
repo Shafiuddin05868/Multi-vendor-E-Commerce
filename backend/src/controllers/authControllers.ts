@@ -14,21 +14,19 @@ class authControllers {
       if (adminData) {
         const isMatch = await bcrypt.compare(password, adminData.password);
         if (isMatch) {
-          res.cookie(
-            "vendor_verse_access",
-            createToken({
-              id: adminData._id.toString(),
-              role: "admin" as keyof Role,
-            }),
-            {
-              expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30), //30d
-              httpOnly: true,
-              secure: process.env.NODE_ENV === "production",
-            }
-          );
+          const access_token = createToken({
+            id: adminData._id.toString(),
+            role: "admin" as keyof Role,
+          });
+          res.cookie("vendor_verse_access", access_token, {
+            expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30), //30d
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+          });
           responseReturn(res, 200, {
             message: "Admin login success",
-            data: adminData,
+            // data: adminData,
+            access_token,
           });
         } else {
           responseReturn(res, 401, { message: "Invalid password" });
