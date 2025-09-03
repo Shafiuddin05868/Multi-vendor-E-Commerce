@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { Token } from "../types/userTypes";
+import { Token, AuthenticatedRequest } from "../types/userTypes";
 
 export const authMiddleware = (
   req: Request,
@@ -20,8 +20,8 @@ export const authMiddleware = (
       process.env.JWT_SECRET as string
     ) as Token;
     
-    req.id = decodeToken.id;
-    req.role = decodeToken.role;
+    (req as AuthenticatedRequest).id = decodeToken.id;
+    (req as AuthenticatedRequest).role = decodeToken.role;
     next();
   } catch (_) {
     res.status(401).json({ message: "Error: You are not authorized" });

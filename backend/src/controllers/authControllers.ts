@@ -3,7 +3,8 @@ import bcrypt from "bcrypt";
 import adminModel from "../models/adminModel";
 import { responseReturn } from "../utiles/response";
 import { createToken } from "../utiles/createToken";
-import { Role } from "../types/userTypes";
+import { AuthenticatedRequest } from "../types/userTypes";
+
 
 class authControllers {
   admin_login = async (req: Request, res: Response) => {
@@ -16,7 +17,7 @@ class authControllers {
         if (isMatch) {
           const access_token = createToken({
             id: adminData._id.toString(),
-            role: "admin" as keyof Role,
+            role: "admin",
           });
           res.cookie("vendor_verse_access", access_token, {
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30), //30d
@@ -33,6 +34,23 @@ class authControllers {
         }
       } else {
         responseReturn(res, 404, { message: "Admin not found" });
+      }
+    } catch (err) {
+      responseReturn(res, 500, { message: (err as Error).message });
+    }
+  };
+  getUser = async (req: Request, res: Response) => {
+    const { id, role } = req as AuthenticatedRequest;
+    // console.log(id, role);
+    try {
+      if (role === "admin") {
+        const adminUser = adminModel.findById(id);
+        responseReturn(res, 200, {
+          message: "User found",
+          data: adminUser,
+        });
+      }else{
+        console.log("seller info")
       }
     } catch (err) {
       responseReturn(res, 500, { message: (err as Error).message });

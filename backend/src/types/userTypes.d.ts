@@ -1,3 +1,5 @@
+import { Request } from "express";
+
 export type Role = {
   admin: "admin",
   vendor: "vendor",
@@ -7,4 +9,9 @@ export type Role = {
 export interface Token {
   id: string;
   role: keyof Role;
+}
+
+export interface AuthenticatedRequest extends Request {
+  id?: string;
+  role?: string;
 }
