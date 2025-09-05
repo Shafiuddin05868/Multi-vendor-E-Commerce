@@ -3,7 +3,7 @@ import { useNavigate, Outlet } from "react-router";
 
 const ProtectRoute = () => {
   const navigate = useNavigate();
-  const isAuthenticated = false;
+  const isAuthenticated = true;
 
   useEffect(() => {
     if (!isAuthenticated) {

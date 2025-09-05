@@ -7,7 +7,11 @@ import {
 
 export default [
   //protected routes
-  layout("routes/ProtectRoute.tsx", [index("routes/home.tsx")]),
+  layout("routes/ProtectRoute.tsx", [
+    layout("layout/MainLayout.tsx", [
+      index("routes/home.tsx")
+    ])
+  ]),
 
   //public routes
   route("auth/login", "routes/auth/login.tsx"),
