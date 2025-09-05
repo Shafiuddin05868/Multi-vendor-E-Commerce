@@ -32,7 +32,7 @@ export default function Sidebar() {
   return (
     <>
       {/* 1. Mobile hamburger */}
-      <div className="fixed left-4 top-4 z-40 md:hidden">
+      <div className="fixed left-4 top-4 z-2 md:hidden">
         <Sheet>
           <SheetTrigger asChild>
             <Button size="icon" variant="outline">

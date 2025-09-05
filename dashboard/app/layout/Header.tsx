@@ -16,7 +16,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 export function AdminHeader() {
   return (
-    <header className="sticky top-0 z-50 h-16 border-b bg-card text-card-foreground">
+    <header className="sticky top-0 h-16 border-b bg-card text-card-foreground">
       <div className="mx-auto flex h-full max-w-screen-2xl items-center px-4 md:px-6">
         {/* Left: logo / title */}
         <div className="flex items-center gap-2 font-semibold">
