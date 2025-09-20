@@ -4,3 +4,5 @@
 /src/generated/prisma
 /.next
 /dist
+
+migrations/schema.txt
